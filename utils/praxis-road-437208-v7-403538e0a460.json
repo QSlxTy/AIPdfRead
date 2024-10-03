@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "praxis-road-437208-v7",
+  "private_key_id": "403538e0a46099bc7349ce3182b626ec1099d8cb",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCn/7LmbvVE3SoY\nEzVAcolnmhT/AuGRnOFe3LJhUkwKFHI1f3Oeky1erJ1m9FWClJpAaaf+va8Um0az\nCcTSKslmcc+DP2M4nGO1Ip1ZBIYQBRT166/1Is9sZrN41Y8hOGsIXGht4BtoxDAV\niPFlHYqL2oWtOzWb9GD2ZboUdvGV4gbvN15ka30Sw32n1Z3PYg5c8TYcfJzns+B6\nSJS0YMaOGB/l8feECwQGCFT1bg+6g6tIzomd8cmccuY6JAU0rJhNB2nR6wVE27Ih\nzDOSHHrczkS0WRNvj6FJSJB4zPorbCDFzWFBbNcv+4kl8nxhrolFyEMJ5W+KsnDM\nbYOh2BGlAgMBAAECggEAAIztMmWbLqRV4rnPYxxs+FawKmzBPfeoYmXxPLHnF2Jd\nRHEcOSEM1UJWCrQSwqiHf94Iw6Qt+nCO0P/fcfvbaJdHYYv34IPcrMeGAfhqkwtd\nN/gTfcdlLBsDDAqRG0AC08ZvviptlJCOAsgN2HG6Fj67UOfAg3gPyEbpju8b2Ayh\n74wtnkAWIGPxyoE9Gp+XDB0VgtRoWum9sp8JzzSNPdPgBOpcbV596eY61wuQcGi/\nEHmA6xtrVspvUfhahaesaSN5MM67CSe7+7CY21pXDrjnyOxe+LSplWyCdFaL4MSU\n383lIC4j5ytP3V2L4Mupcphy62s1YuzvOFQkpvYE6QKBgQDtf5ZaNlJDiblowfSD\n4gcoSZMKi4ABdd1UBA9sYe8VN3C0cfv7Vv2gaEwK2aM+Boj8R1RLDOrq15fnIMd7\nsX+7iGopIGQN+2bGxlt0rTfOnV69FOby+E6W6L08I7FQKorBpC+MhnI7qSs253Km\nWzuRs4QsrBnXjx5uF9WT8oAv/QKBgQC1FhY9L/DXN0wGp0JspLRmR6m4CXvwmCsN\n95S7jVHeL3louPJMXgYykomjfCrM92ivVqFppcil5QNlIrDi6JE3lye87mrXPJ4t\n6AK4ZbObL69MOQnx4hV7ha+I9zr/KSlSwCQGHLX2pnIbMmLvi53j5KSgzktg/K+N\nkUrFii80yQKBgQCYwBHMzdlVFPSKGw0P8cUWtVN8WcKnrc3/ZmkhFU/3PmQfupwN\nyKJxlAMsi1QB5aQfViUx7An/p1BM2HlU5hG4ZQGal/miQIqW2CckQPB+1BqF1DbC\nGNA7IU/sqSw22lXKO7ZVVHeORbzEoFHOCymiCWq+bKZmTOeOeYflkve9ZQKBgHG2\nluyBaFmdTc53xcx3eRkpMzhwLDYfOBojOHC2A4zkfvb1/KFcAcRMJMZWuIHRcxl3\n6xBunJsgPouJx04WAOrJrpiDlu/mDuaA5QRqSOjQfuH8h3QvJpJUlrAJoDCO5nYi\nVfzIlrN2Pf06HMqT/+gVshOQt+EFjC/35t45Mf+RAoGBANI2ieyJaF4MizR0LoOP\nJzw9kJFb2epItWPFICdqs6+vaJkxcOjx1v4QbOBt7s/88jCR2WUJW/N7cJIq2wp3\nprEfMRs5/nVilt/wuKjAbcIqQm0LuyaV149YcTa3oaahOXk80r97CE2trXaeJW2z\nvvqRnyhIAKeu64BsGIiJOWgT\n-----END PRIVATE KEY-----\n",
+  "client_email": "bot-480@praxis-road-437208-v7.iam.gserviceaccount.com",
+  "client_id": "108057855037628973829",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/bot-480%40praxis-road-437208-v7.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
