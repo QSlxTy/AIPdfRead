@@ -5,7 +5,7 @@ from aiogram.fsm.context import FSMContext
 
 from bot_start import bot, logger
 from keyboards.user.user_keyboard import back_menu_kb
-from utils.aiogram_helper import SendMessage
+from utils.aiogram_helper import SendMessage, clear_directory
 from utils.pdf import convert_to_sheet
 from utils.states.user import FSMStart
 
@@ -79,8 +79,7 @@ async def get_file(message: types.Message, state: FSMContext, album: list = None
                           state=state).custom_send()
     except Exception as _ex:
         logger.error(f'convert error --> {_ex}')
-        for document in documents:
-            os.remove(f'files/{message.from_user.id}/{document}')
+        await clear_directory(f'files/{message.from_user.id}')
         await SendMessage(event=message,
                           text=f'<b>❗️Произошла ошибка, попробуйте снова или обратитесь к администрации</b>',
                           handler_name='get_file',

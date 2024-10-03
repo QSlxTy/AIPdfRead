@@ -72,8 +72,8 @@ async def add_to_sheet(name_file, data):
         row = [
             item.get("Артикул"), item.get("Название товара на русском"), item.get("Пол"),
             item.get("Качественные характеристики"),
-            item.get("код ТНВЭД"), item.get("Кол-во, ШТУК"), item.get("HAWB"),
-            item.get("ОБЩИЙ ВЕС, нетто в кг"), item.get("ОБЩИЙ ВЕС, нетто в кг"), item.get("кол-во мест"),
+            item.get("код ТНВЭД"), item.get("Кол-во, ШТУК"), '',
+            '', '', '',
             item.get("Производитель"), item.get("Страна производства"), item.get("Торговая марка")
         ]
         try:

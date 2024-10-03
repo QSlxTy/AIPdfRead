@@ -1,3 +1,5 @@
+import os
+import shutil
 from typing import Optional, List, Literal
 
 import yadisk
@@ -162,6 +164,7 @@ async def create_shared_link(yandex_path):
     logger.info(f'link created {url}')
     return url
 
+
 async def delete_file(yandex_path):
     try:
         yandex.remove(yandex_path)
@@ -169,7 +172,14 @@ async def delete_file(yandex_path):
     except Exception as _ex:
         logger.error(f"Error delete file --> {_ex}")
 
+
 async def upload_image_telegraph(local_file_path, yadisk_name):
     await upload_file(local_file_path, f'/{yadisk_name}')
     link = await create_shared_link(f'/{yadisk_name}')
     return link, f'/{yadisk_name}'
+
+
+async def clear_directory(directory):
+    if os.path.exists(directory):
+        shutil.rmtree(directory)
+    os.makedirs(directory)
