@@ -33,6 +33,7 @@ async def add_to_sheet(name_file, data):
     worksheet = sheet.get_worksheet(0)
     sheet.share('', perm_type='anyone', role='writer')
     link = sheet.url
+    print(link)
     headers = [
         "Артикул или модель", "Название товара на русском", "Пол",
         "Качественные характеристики (материалы, область применения, СОСТАВ, УПАКОВКА)",
