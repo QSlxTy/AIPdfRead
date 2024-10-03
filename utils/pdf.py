@@ -22,7 +22,7 @@ async def convert_pdf(user_id, pdf_path):
     return files
 
 
-async def add_to_sheet(user_id, name_file, data):
+async def add_to_sheet(name_file, data):
     scope = ['https://www.googleapis.com/auth/spreadsheets',
              "https://www.googleapis.com/auth/drive"]
 
@@ -33,7 +33,6 @@ async def add_to_sheet(user_id, name_file, data):
     worksheet = sheet.get_worksheet(0)
     sheet.share('', perm_type='anyone', role='writer')
     link = sheet.url
-    # Установка заголовков
     headers = [
         "Артикул или модель", "Название товара на русском", "Пол",
         "Качественные характеристики (материалы, область применения, СОСТАВ, УПАКОВКА)",
@@ -48,7 +47,7 @@ async def add_to_sheet(user_id, name_file, data):
         horizontalAlignment='CENTER',
         verticalAlignment='MIDDLE',
     ))
-    cell_range = 'A2:M100'  # Укажите диапазон, который хотите отформатировать
+    cell_range = 'A2:M100'
     format_cell_range(worksheet, cell_range, CellFormat(
         horizontalAlignment='CENTER',
         verticalAlignment='MIDDLE',
@@ -93,6 +92,6 @@ async def convert_to_sheet(user_id, pdf_path, name_file):
     link_array = []
     for pdf in pdf_path:
         json_array = await convert_pdf(user_id, pdf)
-        link = await add_to_sheet(user_id, name_file, json_array)
+        link = await add_to_sheet(name_file, json_array)
         link_array.append(link)
     return link_array

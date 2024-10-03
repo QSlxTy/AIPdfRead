@@ -10,8 +10,9 @@ async def start_command(message: types.Message, state: FSMContext):
     await state.set_state(FSMStart.start)
     await message.delete()
     await SendMessage(event=message,
-                      text='<b>Привет\n'
-                           'Отправь мне один или несколько .pdf файлов, рекомендуем скидывать не больше 10 файлов</b>',
+                      text=f'<b>Привет, <code>{message.from_user.first_name}</code> 👋\n\n'
+                           'Отправь мне один или несколько .pdf файлов.</b> \n\n'
+                           '❗️<i>Рекомендуем скидывать не больше 10 файлов за 1 раз</i>',
                       handler_name='start_command',
                       state=state).custom_send()
 
@@ -19,9 +20,10 @@ async def start_command(message: types.Message, state: FSMContext):
 async def main_menu(call: types.CallbackQuery, state: FSMContext):
     await state.set_state(FSMStart.start)
     await SendMessage(event=call,
-                      text='<b>Привет\n'
-                           'Отправь мне один или несколько .pdf файлов, рекомендуем скидывать не больше 10 файлов</b>',
-                      handler_name='start_command',
+                      text=f'<b>Привет, <code>{call.from_user.first_name}</code> 👋\n\n'
+                           'Отправь мне один или несколько .pdf файлов.</b> \n\n'
+                           '❗️<i>Рекомендуем скидывать не больше 10 файлов за 1 раз</i>',
+                      handler_name='main_menu',
                       state=state).custom_send()
 
 

@@ -19,18 +19,17 @@ async def gpt_get_photo(photo):
     base64_image = encode_image(photo)
     response = client.chat.completions.create(
         model="gpt-4o",
-        messages=
-        [{"role": "system",
-          "content": prompt_system},
-         {
-             "role": "user",
-             "content": [
-                 {"type": "text", "text": prompt_user},
-                 {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{base64_image}"}}
+        messages=[{"role": "system",
+                   "content": prompt_system},
+                  {
+                      "role": "user",
+                      "content": [
+                          {"type": "text", "text": prompt_user},
+                          {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{base64_image}"}}
 
-             ],
-         },
-         ],
+                      ],
+                  },
+                  ],
         temperature=0
     )
     print(response.choices[0].message.content)
