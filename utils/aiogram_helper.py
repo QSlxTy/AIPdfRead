@@ -2,14 +2,10 @@ import os
 import shutil
 from typing import Optional, List, Literal
 
-import yadisk
 from aiogram.exceptions import TelegramBadRequest
 from aiogram.types import Message, InputMediaPhoto, InputMediaDocument, InputMediaAnimation, InputMediaVideo
 
 from bot_start import logger
-from src.config import Tokens
-
-yandex = yadisk.YaDisk(token=Tokens.yandex)
 
 
 class SendMessage:
@@ -150,33 +146,6 @@ def unpack_media_group(messages: List[Message], special_format: Literal['no_capt
         elif special_format == 'input_media':
             media_files = [input_media(media[0], media[1], media[2]) for media in media_files]
     return media_files
-
-
-async def upload_file(file_path, yandex_path):
-    logger.info(f"Start upload file to drop box")
-    with open(file_path, 'rb'):
-        yandex.upload(file_path, yandex_path)
-    logger.info(f"File {file_path} uploaded to {yandex_path}")
-
-
-async def create_shared_link(yandex_path):
-    url = yandex.get_download_link(yandex_path)
-    logger.info(f'link created {url}')
-    return url
-
-
-async def delete_file(yandex_path):
-    try:
-        yandex.remove(yandex_path)
-        logger.info(f"File --> {yandex_path} deleted")
-    except Exception as _ex:
-        logger.error(f"Error delete file --> {_ex}")
-
-
-async def upload_image_telegraph(local_file_path, yadisk_name):
-    await upload_file(local_file_path, f'/{yadisk_name}')
-    link = await create_shared_link(f'/{yadisk_name}')
-    return link, f'/{yadisk_name}'
 
 
 async def clear_directory(directory):

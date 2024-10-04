@@ -69,7 +69,7 @@ async def get_file(message: types.Message, state: FSMContext, album: list = None
                                             message.document.file_name)
         link_str = ''
         for i, link in enumerate(link_array):
-            link_str += (f'📌 {i + 1}. Название файла - {link.split(";")[1]}\n'
+            link_str += (f'📌 {i + 1}. Название файла - {documents[i]}.pdf\n'
                          f'🔗 Cсылка - {link.split(";")[0]}\n\n')
         await SendMessage(event=message,
                           text=f'<b>Обработка <code>{count}</code> .pdf файлов завершена 📋\n\n'
