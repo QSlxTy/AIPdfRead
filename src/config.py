@@ -17,6 +17,7 @@ class Tokens:
     openai = getenv('GPT_TOKEN')
     yandex = getenv('YADISK_TOKEN')
 
+
 @dataclass
 class Configuration:
     debug = bool(getenv('DEBUG'))
