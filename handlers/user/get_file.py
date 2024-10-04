@@ -13,7 +13,7 @@ from utils.states.user import FSMStart
 async def get_file(message: types.Message, state: FSMContext, album: list = None):
     if album:
         await SendMessage(event=message,
-                          text=f'<b>Получил <code>{len(album)}</code> файлов 📁\n'
+                          text=f'<b>Получил файлов: <code>{len(album)}</code>  📁\n'
                                f'Начинаю обработку ⚙️\n\n</b>'
                                '❗️<i>Это может занять 3-20 минут в зависимости от количества информации</i>',
                           handler_name='get_file',
@@ -41,19 +41,21 @@ async def get_file(message: types.Message, state: FSMContext, album: list = None
                               handler_name='get_file',
                               state=state).custom_send()
             return
+        names = []
         for msg in album:
             await bot.download(msg.document, f'files/{msg.from_user.id}/{msg.document.file_id}.pdf')
+            names.append(msg.document.file_name)
     else:
         await message.delete()
         count = 1
         await SendMessage(event=message,
-                          text=f'<b>Получил <code>1</code> файл 📁\n\n'
+                          text=f'<b>Получил файлов: <code>1</code> 📁\n\n'
                                f'Начинаю обработку ⚙️\n\n</b>'
                                '❗️<i>Это может занять 3-20 минут в зависимости от количества информации</i>',
                           handler_name='get_file',
                           state=state).custom_send()
         await bot.download(message.document, f'files/{message.from_user.id}/{message.document.file_id}.pdf')
-
+        names = [message.document.file_name]
         if '.pdf' not in message.document.file_name:
             await SendMessage(event=message,
                               text=f'<b>❗️Ошибка\n'
@@ -63,14 +65,15 @@ async def get_file(message: types.Message, state: FSMContext, album: list = None
                               handler_name='get_file',
                               state=state).custom_send()
     documents = os.listdir(f'files/{message.from_user.id}')
+    await state.clear()
     try:
         link_array = await convert_to_sheet(message.from_user.id,
                                             documents,
-                                            message.document.file_name)
+                                            names)
         link_str = ''
         for i, link in enumerate(link_array):
-            link_str += (f'📌 {i + 1}. Название файла - {documents[i]}.pdf\n'
-                         f'🔗 Cсылка - {link.split(";")[0]}\n\n')
+            link_str += (f'📌 {i + 1}. Название файла - {names[i]}\n'
+                         f'🔗 Cсылка -\n {link.split(";")[0]}\n\n')
         await SendMessage(event=message,
                           text=f'<b>Обработка <code>{count}</code> .pdf файлов завершена 📋\n\n'
                                f'{link_str}</b>',

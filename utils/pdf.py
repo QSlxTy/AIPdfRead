@@ -6,6 +6,7 @@ from gspread_formatting import *
 from oauth2client.service_account import ServiceAccountCredentials
 from pdf2image import convert_from_path
 
+from bot_start import logger
 from utils.gpt import gpt_get_photo
 
 
@@ -14,9 +15,14 @@ async def convert_pdf(user_id, pdf_path):
     files = []
     for i, image in enumerate(images):
         image.save(f'files/{user_id}/photo_{i}.jpg', 'JPEG')
-        response = await gpt_get_photo(f'files/{user_id}/photo_{i}.jpg')
-        for resp in response:
-            files.append(resp)
+        try:
+            response = await gpt_get_photo(f'files/{user_id}/photo_{i}.jpg')
+            for resp in response:
+                check = response[0]["Артикул"]
+                files.append(resp)
+        except Exception as _ex:
+            logger.error(f'convert_pdf --> {_ex}')
+            pass
         os.remove(f'files/{user_id}/photo_{i}.jpg')
     os.remove(f'files/{user_id}/{pdf_path}')
     return files
@@ -33,7 +39,6 @@ async def add_to_sheet(name_file, data):
     worksheet = sheet.get_worksheet(0)
     sheet.share('', perm_type='anyone', role='writer')
     link = sheet.url
-    print(link)
     headers = [
         "Артикул или модель", "Название товара на русском", "Пол",
         "Качественные характеристики (материалы, область применения, СОСТАВ, УПАКОВКА)",
@@ -89,10 +94,10 @@ async def add_to_sheet(name_file, data):
     return link
 
 
-async def convert_to_sheet(user_id, pdf_path, name_file):
+async def convert_to_sheet(user_id, pdf_path, names):
     link_array = []
-    for pdf in pdf_path:
+    for i, pdf in enumerate(pdf_path):
         json_array = await convert_pdf(user_id, pdf)
-        link = await add_to_sheet(name_file, json_array)
+        link = await add_to_sheet(names[i], json_array)
         link_array.append(link)
     return link_array

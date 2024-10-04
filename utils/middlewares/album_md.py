@@ -41,8 +41,10 @@ class AlbumMiddleware(BaseMiddleware):
         await asyncio.sleep(self.latency)
 #
 #         # Check the total number of messages after the latency
-        total_after = len(self.album_data[event.media_group_id]["messages"])
-
+        try:
+            total_after = len(self.album_data[event.media_group_id]["messages"])
+        except Exception:
+            pass
 #         # If new messages were added during the latency, exit
         if total_before != total_after:
             return
