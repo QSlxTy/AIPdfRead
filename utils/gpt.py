@@ -11,7 +11,7 @@ client = OpenAI(
     api_key=GPT_API_KEY)
 
 
-async def gpt_get_photo(photo):
+def gpt_get_photo(photo):
     def encode_image(image_path):
         with open(image_path, "rb") as image_file:
             return base64.b64encode(image_file.read()).decode('utf-8')
