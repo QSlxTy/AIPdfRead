@@ -1,8 +1,6 @@
 import asyncio
 import logging
-import os
 import shutil
-import stat
 
 from bot_start import dp, bot
 from handlers.register_handlers import register_handlers
@@ -21,6 +19,7 @@ if __name__ == '__main__':
     try:
         logging.basicConfig(level=conf.logging_level)
         logging.getLogger('openai._base_client').disabled = True
+        logging.getLogger('urllib3.connectionpool').disabled = True
         asyncio.run(start_bot())
     except (KeyboardInterrupt, SystemExit):
         logging.info('Bot stopped')

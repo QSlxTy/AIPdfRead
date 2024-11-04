@@ -23,6 +23,7 @@ class Configuration:
     debug = bool(getenv('DEBUG'))
     logging_level = int(getenv('LOGGING_LEVEL', logging.INFO))
     bot = BotConfig()
+    replicate_token = getenv('REPLICATE_API_KEY')
 
 
 conf = Configuration()
