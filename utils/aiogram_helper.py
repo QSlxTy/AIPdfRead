@@ -42,10 +42,10 @@ class SendMessage:
             msg = await data['msg'].edit_text(
                 text=self.text
             )
-        except (TelegramBadRequest, KeyError) as _ex:
+        except (TelegramBadRequest, KeyError, AttributeError) as _ex:
             try:
                 await data['msg'].delete()
-            except KeyError:
+            except (KeyError, AttributeError):
                 pass
             logger.error(f'edit msg error -> {self.handler_name} ... {_ex}')
             msg = await self.event.answer(
@@ -61,10 +61,10 @@ class SendMessage:
                 reply_markup=await self.keyboard(),
                 disable_web_page_preview=True
             )
-        except (TelegramBadRequest, KeyError) as _ex:
+        except (TelegramBadRequest, KeyError, AttributeError) as _ex:
             try:
                 await data['msg'].delete()
-            except KeyError:
+            except (KeyError, AttributeError):
                 pass
             logger.error(f'edit msg error -> {self.handler_name} ... {_ex}')
             msg = await self.event.answer(
@@ -81,10 +81,10 @@ class SendMessage:
                 text=self.text,
                 disable_web_page_preview=True
             )
-        except (TelegramBadRequest, KeyError) as _ex:
+        except (TelegramBadRequest, KeyError, AttributeError) as _ex:
             try:
                 await data['msg'].delete()
-            except KeyError:
+            except (KeyError, AttributeError):
                 pass
             logger.error(f'edit msg error -> {self.handler_name} ... {_ex}')
             msg = await self.event.message.answer(
@@ -101,10 +101,10 @@ class SendMessage:
                 reply_markup=await self.keyboard(),
                 disable_web_page_preview=True
             )
-        except (TelegramBadRequest, KeyError) as _ex:
+        except (TelegramBadRequest, KeyError, AttributeError) as _ex:
             try:
                 await data['msg'].delete()
-            except KeyError:
+            except (KeyError, AttributeError):
                 pass
             logger.error(f'edit msg error -> {self.handler_name} ... {_ex}')
             msg = await self.event.message.answer(
